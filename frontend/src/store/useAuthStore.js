@@ -6,7 +6,7 @@ import { io } from "socket.io-client";
 //  BASE_URL = import.meta.env.MODE === "development" ? "http://localhost:8001" : "/";
 
 
-const BASE_URL="https://real-time-chat-app-2-9o6t.onrender.com";
+const BASE_URL="https://real-time-chat-app-2-9o6t.onrender.com/api";
 export const useAuthStore = create((set, get) => ({
   authUser: null,
   isSigningUp: false,
