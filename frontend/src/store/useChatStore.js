@@ -3,6 +3,12 @@ import toast from "react-hot-toast";
 import { axiosInstance } from "../lib/axios.js";
 import { useAuthStore } from "./useAuthStore.js";
 
+// Helper to clear group selection without circular import issues
+const clearGroupSelection = async () => {
+  const { useGroupStore } = await import("./useGroupStore.js");
+  useGroupStore.setState({ selectedGroup: null });
+};
+
 export const useChatStore = create((set, get) => ({
   messages: [],
   users: [],
@@ -64,5 +70,11 @@ export const useChatStore = create((set, get) => ({
     socket.off("newMessage");
   },
 
-  setSelectedUser: (selectedUser) => set({ selectedUser }),
+  setSelectedUser: (selectedUser) => {
+    // Clear group selection when a DM user is selected
+    if (selectedUser) {
+      clearGroupSelection();
+    }
+    set({ selectedUser });
+  },
 }));

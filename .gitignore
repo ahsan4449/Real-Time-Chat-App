@@ -23,3 +23,6 @@ dist-ssr
 *.sln
 *.sw?
 .env
+*walkthrough.md
+*walkthrough2.md
+*implementation_plan.md
